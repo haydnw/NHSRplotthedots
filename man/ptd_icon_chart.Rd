@@ -2,7 +2,7 @@
 % Please edit documentation in R/ptd_icon_chart.R
 \name{ptd_icon_chart}
 \alias{ptd_icon_chart}
-\title{PTD Icon}
+\title{PTD Icon Chart}
 \usage{
 ptd_icon_chart(.data)
 }
@@ -10,14 +10,24 @@ ptd_icon_chart(.data)
 \item{.data}{a \code{ptd_spc_df} object created with \code{\link[=ptd_spc]{ptd_spc()}}}
 }
 \value{
-a character string of class \code{"ptd_svg"} containing SVG markup
+an object of class \code{ptd_icon_chart}. Printing it (the default for a
+value returned from a knitr chunk) renders the icons: inline SVG for HTML
+output, otherwise drawn to the current graphics device.
 }
 \description{
-Returns the Making Data Count variation and assurance icon(s) for a
-\code{ptd_spc_df} object as an SVG string. Renders inline automatically in
-RMarkdown and Quarto HTML documents.
+Renders the Making Data Count variation and assurance icon(s) for a
+\code{ptd_spc_df} object (not embedded in an SPC chart).
 }
 \details{
-When a target is set, two icons are returned side by side (assurance on the
+The same call works in any output format:
+\itemize{
+\item In RMarkdown/Quarto \strong{HTML} documents the icons are emitted inline
+as crisp vector SVG, no graphics device required.
+\item In \strong{other} formats (PowerPoint, Word, PDF) the icons are drawn to
+the chunk's graphics device. Set a vector device such as
+\code{dev = "svglite"} to embed them as SVG.
+}
+
+When a target is set, two icons are shown side by side (assurance on the
 left, variation on the right), matching the layout of \code{\link[=ptd_create_ggplot]{ptd_create_ggplot()}}.
 }

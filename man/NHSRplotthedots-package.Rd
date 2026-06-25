@@ -30,6 +30,7 @@ Authors:
   \item John MacKintosh \email{john.mackintosh3@nhs.scot}
   \item Marcos Fabietti \email{marcos.fabietti@nhs.net}
   \item Fran Barton \email{francis.barton@nhs.net} (\href{https://orcid.org/0000-0002-5650-1176}{ORCID})
+  \item Haydn Williams \email{haydn.williams3@nhs.net}
 }
 
 Other contributors:
