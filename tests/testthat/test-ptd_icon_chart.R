@@ -48,3 +48,15 @@ test_that("ptd_icon_chart puts assurance left and variation right", {
   expect_match(result, '<image href[^>]+x="0"')
   expect_match(result, '<image href[^>]+x="378"')
 })
+
+test_that("knit_print.ptd_svg returns the raw svg as asis output", {
+  skip_if_not_installed("knitr")
+
+  svg <- structure("<svg>x</svg>", class = c("ptd_svg", "character"))
+
+  result <- knit_print.ptd_svg(svg)
+
+  expect_s3_class(result, "knit_asis")
+  # the svg markup is emitted verbatim, without the ptd_svg class attribute
+  expect_equal(as.character(result), "<svg>x</svg>")
+})

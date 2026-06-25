@@ -44,7 +44,7 @@ ptd_icon_chart <- function(.data) {
   structure(svg, class = c("ptd_svg", "character"))
 }
 
-#' @export
+#' @exportS3Method knitr::knit_print
 knit_print.ptd_svg <- function(x, ...) {
   knitr::asis_output(unclass(x))
 }
