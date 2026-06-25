@@ -1,7 +1,7 @@
 # NHSRplotthedots 0.2.2.9000
 
 ## New features
-* Added `ptd_icon_chart()`, which renders the Making Data Count variation and assurance icon(s) for a `ptd_spc_df` object (not embedded in an SPC chart). In RMarkdown and Quarto HTML documents the icons are emitted inline as vector SVG; in other formats (PowerPoint, Word, PDF) they are drawn to the chunk's graphics device, so setting a vector device such as `dev = "svglite"` embeds them as SVG.
+* Added `ptd_icon_chart()`, which renders the Making Data Count variation and assurance icon(s) for a `ptd_spc_df` object (not embedded in an SPC chart). In RMarkdown and Quarto HTML documents the icons are emitted inline as SVG; in other formats (PowerPoint, Word, PDF) they are drawn to the chunk's graphics device, so setting a vector device such as `dev = "svglite"` embeds them as SVG. Faceted data is drawn as a labelled grid of cells, one per facet, with the arrangement controlled by the new `ncol` argument.
 * `ptd_create_ggplot()` (and the `plot()` method for `ptd_spc_df` objects) gains a `show_icons` argument (default `TRUE`) to control whether the variation and assurance icons are drawn on the plot.
 
 ## Bugfixes

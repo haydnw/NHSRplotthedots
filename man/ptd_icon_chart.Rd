@@ -4,10 +4,14 @@
 \alias{ptd_icon_chart}
 \title{PTD Icon Chart}
 \usage{
-ptd_icon_chart(.data)
+ptd_icon_chart(.data, ncol = NULL)
 }
 \arguments{
 \item{.data}{a \code{ptd_spc_df} object created with \code{\link[=ptd_spc]{ptd_spc()}}}
+
+\item{ncol}{the number of columns to arrange faceted icons into. The default
+(\code{NULL}) uses a single column when unfaceted, otherwise a roughly square
+grid.}
 }
 \value{
 an object of class \code{ptd_icon_chart}. Printing it (the default for a
@@ -22,7 +26,7 @@ Renders the Making Data Count variation and assurance icon(s) for a
 The same call works in any output format:
 \itemize{
 \item In RMarkdown/Quarto \strong{HTML} documents the icons are emitted inline
-as crisp vector SVG, no graphics device required.
+as SVG, no graphics device required.
 \item In \strong{other} formats (PowerPoint, Word, PDF) the icons are drawn to
 the chunk's graphics device. Set a vector device such as
 \code{dev = "svglite"} to embed them as SVG.
@@ -30,4 +34,7 @@ the chunk's graphics device. Set a vector device such as
 
 When a target is set, two icons are shown side by side (assurance on the
 left, variation on the right), matching the layout of \code{\link[=ptd_create_ggplot]{ptd_create_ggplot()}}.
+
+When the \code{ptd_spc_df} is faceted, one labelled cell is drawn per facet,
+arranged in a grid. Use \code{ncol} to control the number of columns.
 }
