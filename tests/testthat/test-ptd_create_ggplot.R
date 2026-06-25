@@ -43,6 +43,7 @@ test_that("it calls ptd_validate_plot_options", {
       "x_axis_breaks",
       "y_axis_breaks",
       "limit_annotations",
+      "show_icons",
       "icons_size",
       "icons_position",
       "colours",
@@ -66,6 +67,7 @@ test_that("it calls ptd_validate_plot_options", {
     "x_axis_breaks",
     "y_axis_breaks",
     "limit_annotations",
+    "show_icons",
     "icons_size",
     "icons_position",
     "colours",
@@ -83,7 +85,26 @@ test_that("it returns a ggplot object", {
 
   expect_s3_class(p, c("gg", "ggplot"))
   expect_true(inherits(pl, "ggplot2::labels"))
+  # 8 layers by default - icons are shown unless show_icons = FALSE
   expect_length(p$layers, 8)
+  expect_equal(pl$title, "SPC Chart of Y, starting 02/01/2020")
+  expect_equal(pl$x, "X")
+  expect_equal(pl$y, "Y")
+  expect_equal(pl$group, NULL)
+  expect_equal(pl$caption, NULL)
+})
+
+test_that("it returns a ggplot object with no icons when show_icons = FALSE", {
+  set.seed(123)
+  d <- data.frame(x = as.Date("2020-01-01") + seq(20L), y = rnorm(20L))
+  s <- ptd_spc(d, "y", "x")
+  p <- ptd_create_ggplot(s, show_icons = FALSE)
+  pl <- as.list(p$labels)
+
+  expect_s3_class(p, c("gg", "ggplot"))
+  expect_true(inherits(pl, "ggplot2::labels"))
+  # 7 layers when show_icons = FALSE - icon layer dropped
+  expect_length(p$layers, 7)
   expect_equal(pl$title, "SPC Chart of Y, starting 02/01/2020")
   expect_equal(pl$x, "X")
   expect_equal(pl$y, "Y")
@@ -363,7 +384,7 @@ test_that("a plot with short rebase group has a warning caption", {
   )
 })
 
-test_that("it doesn't add icons if icons_position is 'none'", {
+test_that("it only adds icons when show_icons is TRUE", {
   m <- mock()
   stub(ptd_create_ggplot, "geom_ptd_icon", m)
 
@@ -374,8 +395,12 @@ test_that("it doesn't add icons if icons_position is 'none'", {
   )
 
   s1 <- ptd_spc(d, "y", "x", target = 0.5)
+  # show_icons = FALSE, so no icons
+  p0 <- ptd_create_ggplot(s1, show_icons = FALSE, icons_position = "top right")
+  # default (show_icons = TRUE) adds the icons
   p1 <- ptd_create_ggplot(s1, icons_position = "top right")
-  p2 <- ptd_create_ggplot(s1, icons_position = "none")
+  # show_icons = TRUE but icons_position = "none" still adds no icons
+  p2 <- ptd_create_ggplot(s1, show_icons = TRUE, icons_position = "none")
 
   expect_called(m, 1)
 })
@@ -409,6 +434,7 @@ test_that("it calls ptd_create_ggplot()", {
     x_axis_breaks = NULL,
     y_axis_breaks = NULL,
     limit_annotations = FALSE,
+    show_icons = TRUE,
     icons_size = 8,
     icons_position = c("top right", "bottom right", "bottom left", "top left", "none"),
     colours = "colours",

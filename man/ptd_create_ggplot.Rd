@@ -17,6 +17,7 @@ ptd_create_ggplot(
   x_axis_breaks = NULL,
   y_axis_breaks = NULL,
   label_limits = FALSE,
+  show_icons = TRUE,
   icons_size = 8L,
   icons_position = c("top right", "bottom right", "bottom left", "top left", "none"),
   colours = ptd_spc_colours(),
@@ -64,6 +65,10 @@ ignored if faceting is in use.}
 
 \item{label_limits}{Whether to add a secondary y axis that just provides
 labels for the values of the UCL, LCL and mean. The default is \code{FALSE}.}
+
+\item{show_icons}{Whether to display the assurance and variation icons on the
+plot. Accepted values are \code{TRUE} to show the icons or \code{FALSE} to hide them.
+Defaults to \code{TRUE}.}
 
 \item{icons_size}{The size of the icons, defined in terms of font size.
 Defaults to 8.}

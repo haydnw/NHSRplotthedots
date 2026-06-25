@@ -29,6 +29,9 @@
 #'  ignored if faceting is in use.
 #' @param label_limits Whether to add a secondary y axis that just provides
 #'  labels for the values of the UCL, LCL and mean. The default is `FALSE`.
+#' @param show_icons Whether to display the assurance and variation icons on the
+#'  plot. Accepted values are `TRUE` to show the icons or `FALSE` to hide them.
+#'  Defaults to `TRUE`.
 #' @param icons_size The size of the icons, defined in terms of font size.
 #'  Defaults to 8.
 #' @param icons_position Where to show the icons, either "top right" (default),
@@ -56,6 +59,7 @@ ptd_create_ggplot <- function(
     x_axis_breaks = NULL,
     y_axis_breaks = NULL,
     label_limits = FALSE,
+    show_icons = TRUE,
     icons_size = 8L,
     icons_position = c("top right", "bottom right", "bottom left", "top left", "none"),
     colours = ptd_spc_colours(),
@@ -112,6 +116,7 @@ ptd_create_ggplot <- function(
     x_axis_breaks,
     y_axis_breaks,
     label_limits,
+    show_icons,
     icons_size,
     icons_position,
     colours,
@@ -298,7 +303,7 @@ ptd_create_ggplot <- function(
   }
 
 
-  if (icons_position != "none") {
+  if (show_icons && icons_position != "none") {
     plot <- plot +
       geom_ptd_icon(icons_size = icons_size, icons_position = icons_position)
   }
@@ -322,6 +327,7 @@ plot.ptd_spc_df <- function(
     x_axis_breaks = NULL,
     y_axis_breaks = NULL,
     label_limits = FALSE,
+    show_icons = TRUE,
     icons_size = 8L,
     icons_position = c("top right", "bottom right", "bottom left", "top left", "none"),
     colours = ptd_spc_colours(),
@@ -343,6 +349,7 @@ plot.ptd_spc_df <- function(
     x_axis_breaks,
     y_axis_breaks,
     label_limits,
+    show_icons,
     icons_size,
     icons_position,
     colours,

@@ -124,6 +124,17 @@ test_that("it handles y_axis_breaks correctly", {
   expect_error(ptd_validate_plot_options(y_axis_breaks = c(1, 2)), em)
 })
 
+test_that("it handles show_icons correctly", {
+  # these should run fine
+  ptd_validate_plot_options(show_icons = TRUE)
+  ptd_validate_plot_options(show_icons = FALSE)
+
+  # these will error
+  em <- "show_icons argument must be a logical of length 1."
+  expect_error(ptd_validate_plot_options(show_icons = "a"), em, fixed = TRUE)
+  expect_error(ptd_validate_plot_options(show_icons = c(TRUE, FALSE)), em, fixed = TRUE)
+})
+
 test_that("it handles icons_size correctly", {
   # these should run fine
   ptd_validate_plot_options(icons_size = 8L)

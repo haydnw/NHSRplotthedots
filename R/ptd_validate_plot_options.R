@@ -9,6 +9,7 @@ ptd_validate_plot_options <- function(point_size = NULL,
                                       x_axis_breaks = NULL,
                                       y_axis_breaks = NULL,
                                       label_limits = NULL,
+                                      show_icons = NULL,
                                       icons_size = NULL,
                                       icons_position = NULL,
                                       colours = NULL,
@@ -108,6 +109,14 @@ ptd_validate_plot_options <- function(point_size = NULL,
       is.logical(label_limits),
       assertthat::is.scalar(label_limits),
       msg = "The label_limits argument must be a logical of length 1."
+    )
+  }
+
+  if (!is.null(show_icons)) {
+    assertthat::assert_that(
+      is.logical(show_icons),
+      assertthat::is.scalar(show_icons),
+      msg = "The show_icons argument must be a logical of length 1."
     )
   }
 
