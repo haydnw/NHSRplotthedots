@@ -1,3 +1,9 @@
+# NHSRplotthedots 0.2.2.9000
+
+## New features
+* Added `ptd_icon_chart()`, which returns the Making Data Count variation and assurance icon(s) for a `ptd_spc_df` object as a standalone SVG string (not embedded in an SPC chart). It renders inline automatically in RMarkdown and Quarto HTML documents.
+* `ptd_create_ggplot()` (and the `plot()` method for `ptd_spc_df` objects) gains a `show_icons` argument (default `TRUE`) to control whether the variation and assurance icons are drawn on the plot.
+
 # NHSRplotthedots 0.2.2
 
 This second version of 'Plot the Dots' adds new features and bugfixes to the original version.  They are summarised below:
